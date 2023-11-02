@@ -1,0 +1,800 @@
+{
+  "name": "rapid7-velociraptor",
+  "label": "Rapid7 Velociraptor",
+  "description": "Velociraptor is a unique, advanced open-source endpoint monitoring, digital forensic and cyber response platform. It provides you with the ability to more effectively respond to a wide range of digital forensic and cyber incident response investigations and data breaches.",
+  "publisher": "Fortinet",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "version": "1.0.0",
+  "category": "Endpoint Security",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Upload Client API Certificate",
+        "type": "file",
+        "name": "cert_file",
+        "description": "Provide the client API certificate issued by the Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE. For more information check: https://docs.velociraptor.app/docs/server_automation/server_api/",
+        "tooltip": "Provide the client API certificate issued by the Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE.",
+        "required": true,
+        "editable": true,
+        "visible": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "List Clients",
+      "operation": "list_clients",
+      "category": "investigation",
+      "annotation": "list_clients",
+      "description": "Retrieves a list of clients from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {
+        "client_id": "",
+        "agent_information": {
+          "version": "",
+          "name": ""
+        },
+        "os_info": {
+          "system": "",
+          "release": "",
+          "machine": "",
+          "fqdn": "",
+          "install_date": ""
+        },
+        "first_seen_at": "",
+        "last_seen_at": "",
+        "last_ip": "",
+        "last_interrogate_flow_id": "",
+        "labels": []
+      },
+      "parameters": [
+        {
+          "title": "Search String",
+          "name": "search",
+          "type": "text",
+          "description": "Specify the client search string to retrieve clients from Rapid7 Velociraptor. Can have the following prefixes: ’label:’, ‘host:’.",
+          "tooltip": "Specify the client search string to retrieve clients from Rapid7 Velociraptor. Can have the following prefixes: ’label:’, ‘host:’.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Client ID",
+          "name": "client_id",
+          "type": "text",
+          "description": "Specify the client ID to retrieve client from Rapid7 Velociraptor.",
+          "tooltip": "Specify the client ID to retrieve client from Rapid7 Velociraptor.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Count",
+          "name": "count",
+          "type": "integer",
+          "description": "Specify the maximum number of results, per page, that this operation should return. By default, this is set as 1000. ",
+          "tooltip": "Specify the maximum number of results, per page, that this operation should return. By default, this is set as 1000. ",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Offset",
+          "name": "start",
+          "type": "integer",
+          "description": "Specify the index of the first item to be returned by this operation. By default, this is set as 0. ",
+          "tooltip": "Specify the index of the first item to be returned by this operation. By default, this is set as 0. ",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Run Artifacts Collection",
+      "operation": "run_artifacts_collection",
+      "category": "investigation",
+      "annotation": "run_artifacts_collection",
+      "description": "Launches an artifact collection against a client based on the client ID specified. If the client_id is “server” then the collection occurs on the server itself. In that case the caller needs the SERVER_ADMIN permission. Required Permissions: COLLECT_CLIENT, COLLECT_SERVER",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Client ID",
+          "name": "client_id",
+          "type": "text",
+          "description": "Specify the client ID to schedule a collection on Rapid7 Velociraptor.",
+          "tooltip": "Specify the client ID to schedule a collection on Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Artifacts",
+          "name": "artifacts",
+          "type": "text",
+          "description": "Specify a comma-separated list of artifacts to collect.",
+          "tooltip": "Specify a comma-separated list of artifacts to collect.",
+          "placeholder": "Generic.Client.Info or ['Windows.Attack.Prefetch','Generic.Client.Info']",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Env",
+          "name": "env",
+          "type": "text",
+          "description": "Specify parameters to apply to the artifact (an alternative to a full spec). (e.g., dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y'))",
+          "tooltip": "Specify parameters to apply to the artifact (an alternative to a full spec). (e.g., dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y'))",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Spec",
+          "name": "spec",
+          "type": "text",
+          "description": "Specify parameters to apply to the artifacts. (e.g., dict(`Windows.KapeFiles.Targets`=dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y')))",
+          "tooltip": "Specify parameters to apply to the artifacts. (e.g., dict(`Windows.KapeFiles.Targets`=dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y')))",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Timeout",
+          "name": "timeout",
+          "type": "integer",
+          "description": "Specify query timeout. (default 10 min)",
+          "tooltip": "Specify query timeout. (default 10 min)",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Ops Per Sec",
+          "name": "ops_per_sec",
+          "type": "integer",
+          "description": "Specify query Ops Per Sec value.",
+          "tooltip": "Specify query Ops Per Sec value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "CPU Limit",
+          "name": "cpu_limit",
+          "type": "integer",
+          "description": "Specify query CPU limit value.",
+          "tooltip": "Specify query CPU limit value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Iops Limit",
+          "name": "iops_limit",
+          "type": "integer",
+          "description": "Specify query Iops Limit value.",
+          "tooltip": "Specify query Iops Limit value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Max Rows",
+          "name": "max_rows",
+          "type": "integer",
+          "description": "Specify max number of rows to fetch.",
+          "tooltip": "Specify max number of rows to fetch.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Max Bytes",
+          "name": "max_bytes",
+          "type": "integer",
+          "description": "Specify max number of bytes to upload.",
+          "tooltip": "Specify max number of bytes to upload.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Urgent",
+          "name": "urgent",
+          "type": "checkbox",
+          "description": "Select the checkbox to set the collection as urgent. When this is set as true it skips other queues collections on the client.",
+          "tooltip": "Select the checkbox to set the collection as urgent. When this is set as true it skips other queues collections on the client.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Org ID",
+          "name": "org_id",
+          "type": "text",
+          "description": "Specify the org ID in which the collection will be started.",
+          "tooltip": "Specify the org ID in which the collection will be started.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Get Flow Results",
+      "operation": "get_flow_results",
+      "category": "investigation",
+      "annotation": "get_flow_results",
+      "description": "Retrieves the results of a flow from Rapid7 Velociraptor based on the Flow ID and other input parameters you have specified. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Flow ID",
+          "name": "flow_id",
+          "type": "text",
+          "description": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "tooltip": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Client ID",
+          "name": "client_id",
+          "type": "text",
+          "description": "Specify the client ID to extract from Rapid7 Velociraptor.",
+          "tooltip": "Specify the client ID to extract from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Artifact",
+          "name": "artifact",
+          "type": "text",
+          "description": "Specify artifact to retrieve in this operation.",
+          "tooltip": "Specify artifact to retrieve in this operation.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Source",
+          "name": "source",
+          "type": "text",
+          "description": "Specify an optional source within the artifact.",
+          "tooltip": "Specify an optional source within the artifact.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "List Flows",
+      "operation": "list_flows",
+      "category": "investigation",
+      "annotation": "list_flows",
+      "description": "Retrieves a list of flows launched on each client from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Client ID",
+          "name": "client_id",
+          "type": "text",
+          "description": "Specify the client ID to retrieve flows from Rapid7 Velociraptor.",
+          "tooltip": "Specify the client ID to retrieve flows from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Flow ID",
+          "name": "flow_id",
+          "type": "text",
+          "description": "Specify the flow ID to retrieve from Rapid7 Velociraptor.",
+          "tooltip": "Specify the flow ID to retrieve from Rapid7 Velociraptor.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Create Flow Download",
+      "operation": "create_flow_download",
+      "category": "investigation",
+      "annotation": "create_flow_download",
+      "description": "Creates a download pack for the flow. This function initiates the download creation process for a flow. It is equivalent to the GUI functionality allowing to “Download Results” from the Flows Overview page. Required Permissions: PREPARE_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Client ID",
+          "name": "client_id",
+          "type": "text",
+          "description": "Specify the client ID to export flow from Rapid7 Velociraptor.",
+          "tooltip": "Specify the client ID to export flow from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Flow ID",
+          "name": "flow_id",
+          "type": "text",
+          "description": "Specify the flow ID to export from Rapid7 Velociraptor.",
+          "tooltip": "Specify the flow ID to export from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Wait",
+          "name": "wait",
+          "type": "checkbox",
+          "description": "Select the checkbox to wait for the download to complete before returning.",
+          "tooltip": "Select the checkbox to wait for the download to complete before returning.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Password",
+          "name": "password",
+          "type": "text",
+          "description": "Specify an optional password to encrypt the collection zip.",
+          "tooltip": "Specify an optional password to encrypt the collection zip.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Format",
+          "name": "format",
+          "type": "text",
+          "description": "Specify the format to export (csv,json,csv_only) defaults to both.",
+          "tooltip": "Specify the format to export (csv,json,csv_only) defaults to both.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Name",
+          "name": "name",
+          "type": "text",
+          "description": "Specify the name of the file. By default filename is generated based on flow id.",
+          "tooltip": "Specify the name of the file. By default filename is generated based on flow id.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Expand Sparse",
+          "name": "expand_sparse",
+          "type": "checkbox",
+          "description": "Select the checkbox to expand sparse files in the archive.",
+          "tooltip": "Select the checkbox to expand sparse files in the archive.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Dump Artifact Definitions",
+      "operation": "dump_artifact_definitions",
+      "category": "investigation",
+      "annotation": "dump_artifact_definitions",
+      "description": "Dumps artifact definitions from the internal repository. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Artifact Name",
+          "name": "names",
+          "type": "text",
+          "description": "Specify a comma-separated list of artifact definitions to dump",
+          "tooltip": "Specify a comma-separated list of artifact definitions to dump",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Include Dependencies",
+          "name": "deps",
+          "type": "checkbox",
+          "description": "Select the checkbox to include all dependencies as well.",
+          "tooltip": "Select the checkbox to include all dependencies as well.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Sanitize",
+          "name": "sanitize",
+          "type": "checkbox",
+          "description": "Select the checkbox to remove extra metadata.",
+          "tooltip": "Select the checkbox to remove extra metadata.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Create Hunt",
+      "operation": "create_hunt",
+      "category": "investigation",
+      "annotation": "create_hunt",
+      "description": "Creates and launches a hunt to collect the specified artifacts. Required Permissions: ORG_ADMIN, START_HUNT",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Artifacts",
+          "name": "artifacts",
+          "type": "text",
+          "description": "Specify a comma-separated list of artifacts to collect from Rapid7 Velociraptor.",
+          "tooltip": "Specify a comma-separated list of artifacts to collect from Rapid7 Velociraptor.",
+          "placeholder": "Generic.Client.Info or ['Windows.Attack.Prefetch','Generic.Client.Info']",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "text",
+          "description": "Specify the description of the hunt.",
+          "tooltip": "Specify the description of the hunt.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Expiry Time",
+          "name": "expires",
+          "type": "text",
+          "description": "Specify a time for expiry. If the expiry time is in the past, the hunt will not be created.",
+          "tooltip": "Specify a time for expiry. If the expiry time is in the past, the hunt will not be created.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Spec",
+          "name": "spec",
+          "type": "text",
+          "description": "Specify the parameters to apply to the artifacts. (e.g.: dict(`Windows.KapeFiles.Targets`=dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y')))",
+          "tooltip": "Specify the parameters to apply to the artifacts. (e.g.: dict(`Windows.KapeFiles.Targets`=dict(Device ='C:', VSSAnalysis='Y', KapeTriage='Y')))",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Timeout",
+          "name": "timeout",
+          "type": "integer",
+          "description": "Specify query timeout. (default 10 min)",
+          "tooltip": "Specify query timeout. (default 10 min)",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Ops Per Sec",
+          "name": "ops_per_sec",
+          "type": "integer",
+          "description": "Specify query Ops Per Sec value.",
+          "tooltip": "Specify query Ops Per Sec value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "CPU Limit",
+          "name": "cpu_limit",
+          "type": "integer",
+          "description": "Specify query CPU limit value.",
+          "tooltip": "Specify query CPU limit value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Iops Limit",
+          "name": "iops_limit",
+          "type": "integer",
+          "description": "Specify query Iops Limit value.",
+          "tooltip": "Specify query Iops Limit value.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Max Rows",
+          "name": "max_rows",
+          "type": "integer",
+          "description": "Specify max number of rows to fetch.",
+          "tooltip": "Specify max number of rows to fetch.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Max Bytes",
+          "name": "max_bytes",
+          "type": "integer",
+          "description": "Specify max number of bytes to upload.",
+          "tooltip": "Specify max number of bytes to upload.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Pause",
+          "name": "pause",
+          "type": "checkbox",
+          "description": "Select the checkbox to create the new hunt in the paused state.",
+          "tooltip": "Select the checkbox to create the new hunt in the paused state.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Include Labels",
+          "name": "include_labels",
+          "type": "text",
+          "description": "Specify comma-separated list of labels to only include those in the response.",
+          "tooltip": "Specify comma-separated list of labels to only include those in the response.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Exclude Labels",
+          "name": "exclude_labels",
+          "type": "text",
+          "description": "Specify comma-separated list of labels to exclude those in the response.",
+          "tooltip": "Specify comma-separated list of labels to exclude those in the response.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "OS",
+          "name": "os",
+          "type": "text",
+          "description": "Specify to target this OS.",
+          "tooltip": "Specify to target this OS.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Org ID",
+          "name": "org_id",
+          "type": "text",
+          "description": "Specify the org ID in which the collection will be started.",
+          "tooltip": "Specify the org ID in which the collection will be started.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "List Hunts",
+      "operation": "list_hunts",
+      "category": "investigation",
+      "annotation": "list_hunts",
+      "description": "Retrieves a list of hunts from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Hunt ID",
+          "name": "hunt_id",
+          "type": "text",
+          "description": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "tooltip": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Count",
+          "name": "count",
+          "type": "integer",
+          "description": "Specify the maximum number of results, per page, that this operation should return.",
+          "tooltip": "Specify the maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Offset",
+          "name": "offset",
+          "type": "integer",
+          "description": "Specify the index of the first item to be returned by this operation.",
+          "tooltip": "Specify the index of the first item to be returned by this operation.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Get Hunt Results",
+      "operation": "get_hunt_results",
+      "category": "investigation",
+      "annotation": "get_hunt_results",
+      "description": "Retrieves the results of a hunt from Rapid7 Velociraptor based on the Hunt ID and other input parameters you have specified. Required Permissions: READ_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Hunt ID",
+          "name": "hunt_id",
+          "type": "text",
+          "description": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "tooltip": "Specify the hunt ID to read from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Artifact",
+          "name": "artifact",
+          "type": "text",
+          "description": "Specify the artifact to retrieve from Rapid7 Velociraptor.",
+          "tooltip": "Specify the artifact to retrieve from Rapid7 Velociraptor.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Source",
+          "name": "source",
+          "type": "text",
+          "description": "Specify an optional source within the artifact.",
+          "tooltip": "Specify an optional source within the artifact.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Brief",
+          "name": "brief",
+          "type": "checkbox",
+          "description": "Select the checkbox to return less columns.",
+          "tooltip": "Select the checkbox to return less columns.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Create Hunt Download",
+      "operation": "create_hunt_download",
+      "category": "investigation",
+      "annotation": "create_hunt_download",
+      "description": "Creates a download pack for a hunt. This function initiates the download creation process for a hunt. It is equivalent to the GUI functionality allowing to “Download Results” from the Hunts Overview page. Required Permissions: PREPARE_RESULTS",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Hunt ID",
+          "name": "hunt_id",
+          "type": "text",
+          "description": "Specify the hunt ID to export from Rapid7 Velociraptor.",
+          "tooltip": "Specify the hunt ID to export from Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Only Combined",
+          "name": "only_combined",
+          "type": "checkbox",
+          "description": "Select the checkbox to only export combined results.",
+          "tooltip": "Select the checkbox to only export combined results.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Wait",
+          "name": "wait",
+          "type": "checkbox",
+          "description": "Select the checkbox to wait for the download to complete before returning.",
+          "tooltip": "Select the checkbox to wait for the download to complete before returning.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Format",
+          "name": "format",
+          "type": "text",
+          "description": "Specify the format to export (csv,json) defaults to both.",
+          "tooltip": "Specify the format to export (csv,json) defaults to both.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Base",
+          "name": "base",
+          "type": "text",
+          "description": "Specify the base filename to write to.",
+          "tooltip": "Specify the base filename to write to.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Password",
+          "name": "password",
+          "type": "text",
+          "description": "Specify an optional password to encrypt the collection zip.",
+          "tooltip": "Specify an optional password to encrypt the collection zip.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Expand Sparse",
+          "name": "expand_sparse",
+          "type": "checkbox",
+          "description": "Select the checkbox to expand sparse files in the archive.",
+          "tooltip": "Select the checkbox to expand sparse files in the archive.",
+          "value": false,
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Run VQL Query",
+      "operation": "run_vql_query",
+      "category": "investigation",
+      "annotation": "run_vql_query",
+      "description": "Runs a user-defined VQL query on Rapid7 Velociraptor. Make sure you have all the permissions required to run the query.",
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "VQL Query",
+          "name": "query",
+          "type": "text",
+          "description": "Specify the VQL query to run on Rapid7 Velociraptor.",
+          "tooltip": "Specify the VQL query to run on Rapid7 Velociraptor.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}
