@@ -26,7 +26,7 @@
   },
   "operations": [
     {
-      "title": "List Clients",
+      "title": "Get Clients List",
       "operation": "list_clients",
       "category": "investigation",
       "annotation": "list_clients",
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "title": "List Flows",
+      "title": "Get Flows List",
       "operation": "list_flows",
       "category": "investigation",
       "annotation": "list_flows",
@@ -599,7 +599,7 @@
       ]
     },
     {
-      "title": "List Hunts",
+      "title": "Get Hunts List",
       "operation": "list_hunts",
       "category": "investigation",
       "annotation": "list_hunts",

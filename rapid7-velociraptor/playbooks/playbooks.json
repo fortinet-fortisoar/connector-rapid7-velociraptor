@@ -19,7 +19,7 @@
           "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
           "triggerLimit": null,
           "description": "Retrieves a list of clients from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
-          "name": "List Clients",
+          "name": "Get Clients List",
           "tag": "#Rapid7 Velociraptor",
           "recordTags": [
             "Rapid7",
@@ -40,7 +40,7 @@
               "status": null,
               "arguments": {
                 "route": "2522d489-0c88-42b5-9f1c-445a8847fbac",
-                "title": "Rapid7 Velociraptor: List Clients",
+                "title": "Rapid7 Velociraptor: Get Clients List",
                 "resources": [
                   "alerts"
                 ],
@@ -61,7 +61,7 @@
             {
               "uuid": "225132df-b34f-4da0-8bb4-b2360546c9dc",
               "@type": "WorkflowStep",
-              "name": "List Clients",
+              "name": "Get Clients List",
               "description": null,
               "status": null,
               "arguments": {
@@ -71,7 +71,7 @@
                 "version": "1.0.0",
                 "connector": "rapid7-velociraptor",
                 "operation": "list_clients",
-                "operationTitle": "List Clients"
+                "operationTitle": "Get Clients List"
               },
               "left": "188",
               "top": "120",
@@ -84,7 +84,7 @@
               "uuid": "57b03e02-6b6f-4b22-85f0-33afcd803445",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Clients",
+              "name": "Start-> Get Clients List",
               "sourceStep": "/api/3/workflow_steps/b42d5a13-f60b-4c08-a07a-6ba55cf33e63",
               "targetStep": "/api/3/workflow_steps/225132df-b34f-4da0-8bb4-b2360546c9dc"
             }
@@ -252,7 +252,7 @@
           "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
           "triggerLimit": null,
           "description": "Retrieves a list of flows launched on each client from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
-          "name": "List Flows",
+          "name": "Get Flows List",
           "tag": "#Rapid7 Velociraptor",
           "recordTags": [
             "Rapid7",
@@ -273,7 +273,7 @@
               "status": null,
               "arguments": {
                 "route": "7e4091df-cece-441d-ba13-9f8885e9783c",
-                "title": "Rapid7 Velociraptor: List Flows",
+                "title": "Rapid7 Velociraptor: Get Flows List",
                 "resources": [
                   "alerts"
                 ],
@@ -294,7 +294,7 @@
             {
               "uuid": "167a4d1d-e3b6-4741-89be-cfffd6b23927",
               "@type": "WorkflowStep",
-              "name": "List Flows",
+              "name": "Get Flows List",
               "description": null,
               "status": null,
               "arguments": {
@@ -304,7 +304,7 @@
                 "version": "1.0.0",
                 "connector": "rapid7-velociraptor",
                 "operation": "list_flows",
-                "operationTitle": "List Flows"
+                "operationTitle": "Get Flows List"
               },
               "left": "188",
               "top": "120",
@@ -317,7 +317,7 @@
               "uuid": "fcecd2df-c032-4675-beaa-cb5a90f96bf2",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Flows",
+              "name": "Start-> Get Flows List",
               "sourceStep": "/api/3/workflow_steps/f44af6ca-3e55-49d4-9a2f-b85559d88265",
               "targetStep": "/api/3/workflow_steps/167a4d1d-e3b6-4741-89be-cfffd6b23927"
             }
@@ -568,7 +568,7 @@
           "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
           "triggerLimit": null,
           "description": "Retrieves a list of hunts from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
-          "name": "List Hunts",
+          "name": "Get Hunts List",
           "tag": "#Rapid7 Velociraptor",
           "recordTags": [
             "Rapid7",
@@ -589,7 +589,7 @@
               "status": null,
               "arguments": {
                 "route": "b606bb62-5570-44af-88c9-59b85bccf04c",
-                "title": "Rapid7 Velociraptor: List Hunts",
+                "title": "Rapid7 Velociraptor: Get Hunts List",
                 "resources": [
                   "alerts"
                 ],
@@ -610,7 +610,7 @@
             {
               "uuid": "4f7b101c-15b3-4d9b-aea0-15b045545f33",
               "@type": "WorkflowStep",
-              "name": "List Hunts",
+              "name": "Get Hunts List",
               "description": null,
               "status": null,
               "arguments": {
@@ -620,7 +620,7 @@
                 "version": "1.0.0",
                 "connector": "rapid7-velociraptor",
                 "operation": "list_hunts",
-                "operationTitle": "List Hunts"
+                "operationTitle": "Get Hunts List"
               },
               "left": "188",
               "top": "120",
@@ -633,7 +633,7 @@
               "uuid": "cfa018d5-30a4-4983-ae66-0fd23bb4ab47",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Hunts",
+              "name": "Start-> Get Hunts List",
               "sourceStep": "/api/3/workflow_steps/ad13a6d5-36a3-496c-a194-619953893490",
               "targetStep": "/api/3/workflow_steps/4f7b101c-15b3-4d9b-aea0-15b045545f33"
             }
