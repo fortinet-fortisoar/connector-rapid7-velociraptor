@@ -1,7 +1,7 @@
 {
   "name": "rapid7-velociraptor",
   "label": "Rapid7 Velociraptor",
-  "description": "Velociraptor is a unique, advanced open-source endpoint monitoring, digital forensic and cyber response platform. It provides you with the ability to more effectively respond to a wide range of digital forensic and cyber incident response investigations and data breaches.",
+  "description": "Rapid7 Velociraptor is a unique, advanced open-source endpoint monitoring, digital forensic and cyber response platform. It provides you with the ability to more effectively respond to a wide range of digital forensic and cyber incident response investigations and data breaches.",
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
@@ -16,8 +16,8 @@
         "title": "Upload Client API Certificate",
         "type": "file",
         "name": "cert_file",
-        "description": "Provide the client API certificate issued by the Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE. For more information check: https://docs.velociraptor.app/docs/server_automation/server_api/",
-        "tooltip": "Provide the client API certificate issued by the Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE.",
+        "description": "Provide the client API certificate issued by the Rapid7 Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE. For more information check: https://docs.velociraptor.app/docs/server_automation/server_api/",
+        "tooltip": "Provide the client API certificate issued by the Rapid7 Velociraptor CA to authenticate and establish a TLS connection with the API server. Required permissions for check health: MACHINE_STATE.",
         "required": true,
         "editable": true,
         "visible": true
