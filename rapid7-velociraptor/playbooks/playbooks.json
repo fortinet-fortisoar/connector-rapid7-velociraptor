@@ -1,0 +1,882 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "6627638e-6686-4e42-84d5-a6344cd64702",
+      "@type": "WorkflowCollection",
+      "name": "Sample - Rapid7 Velociraptor - 1.0.0",
+      "description": "Velociraptor is a unique, advanced open-source endpoint monitoring, digital forensic and cyber response platform. It provides you with the ability to more effectively respond to a wide range of digital forensic and cyber incident response investigations and data breaches.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Rapid7",
+        "rapid7-velociraptor"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "4f4a1bc5-eb33-4922-8878-a817ca47a826",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Retrieves a list of clients from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+          "name": "Get Clients List",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b42d5a13-f60b-4c08-a07a-6ba55cf33e63",
+          "steps": [
+            {
+              "uuid": "b42d5a13-f60b-4c08-a07a-6ba55cf33e63",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "2522d489-0c88-42b5-9f1c-445a8847fbac",
+                "title": "Rapid7 Velociraptor: Get Clients List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "225132df-b34f-4da0-8bb4-b2360546c9dc",
+              "@type": "WorkflowStep",
+              "name": "Get Clients List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "list_clients",
+                "operationTitle": "Get Clients List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "57b03e02-6b6f-4b22-85f0-33afcd803445",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Clients List",
+              "sourceStep": "/api/3/workflow_steps/b42d5a13-f60b-4c08-a07a-6ba55cf33e63",
+              "targetStep": "/api/3/workflow_steps/225132df-b34f-4da0-8bb4-b2360546c9dc"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9504e1b3-2bce-4675-8ece-9855df00156a",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Launches an artifact collection against a client based on the client ID specified. If the client_id is \u201cserver\u201d then the collection occurs on the server itself. In that case the caller needs the SERVER_ADMIN permission. Required Permissions: COLLECT_CLIENT, COLLECT_SERVER",
+          "name": "Run Artifacts Collection",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/94ab04d7-3329-4360-8ced-0996bc28be0c",
+          "steps": [
+            {
+              "uuid": "94ab04d7-3329-4360-8ced-0996bc28be0c",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "899ba9bf-ddf4-4905-ae2e-54a155b0c8e6",
+                "title": "Rapid7 Velociraptor: Run Artifacts Collection",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "71090c64-d185-43f7-99bd-b14523b4266a",
+              "@type": "WorkflowStep",
+              "name": "Run Artifacts Collection",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "urgent": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "run_artifacts_collection",
+                "operationTitle": "Run Artifacts Collection"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "46238b17-b47f-4dda-9925-2cc169b8eb78",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Run Artifacts Collection",
+              "sourceStep": "/api/3/workflow_steps/94ab04d7-3329-4360-8ced-0996bc28be0c",
+              "targetStep": "/api/3/workflow_steps/71090c64-d185-43f7-99bd-b14523b4266a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "a2e26d76-e85d-4dc9-8fc1-0d8478d3e845",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Retrieves the results of a flow from Rapid7 Velociraptor based on the Flow ID and other input parameters you have specified. Required Permissions: READ_RESULTS",
+          "name": "Get Flow Results",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/489776f1-3018-44df-a528-94315f7b6b30",
+          "steps": [
+            {
+              "uuid": "489776f1-3018-44df-a528-94315f7b6b30",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d5980792-0e98-411f-aac9-ec07fd8de6d9",
+                "title": "Rapid7 Velociraptor: Get Flow Results",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "1f9e4fcb-b773-492d-9e48-7d281d7b9b54",
+              "@type": "WorkflowStep",
+              "name": "Get Flow Results",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "get_flow_results",
+                "operationTitle": "Get Flow Results"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "a7508ff3-f933-490f-868b-3048ce2f6c71",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Flow Results",
+              "sourceStep": "/api/3/workflow_steps/489776f1-3018-44df-a528-94315f7b6b30",
+              "targetStep": "/api/3/workflow_steps/1f9e4fcb-b773-492d-9e48-7d281d7b9b54"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d0888bf6-061e-4fc7-85b1-80f52e4a5b85",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Retrieves a list of flows launched on each client from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+          "name": "Get Flows List",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f44af6ca-3e55-49d4-9a2f-b85559d88265",
+          "steps": [
+            {
+              "uuid": "f44af6ca-3e55-49d4-9a2f-b85559d88265",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "7e4091df-cece-441d-ba13-9f8885e9783c",
+                "title": "Rapid7 Velociraptor: Get Flows List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "167a4d1d-e3b6-4741-89be-cfffd6b23927",
+              "@type": "WorkflowStep",
+              "name": "Get Flows List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "list_flows",
+                "operationTitle": "Get Flows List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "fcecd2df-c032-4675-beaa-cb5a90f96bf2",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Flows List",
+              "sourceStep": "/api/3/workflow_steps/f44af6ca-3e55-49d4-9a2f-b85559d88265",
+              "targetStep": "/api/3/workflow_steps/167a4d1d-e3b6-4741-89be-cfffd6b23927"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "81d759ca-67a2-439c-9bc3-8e31db619359",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Creates a download pack for the flow. This function initiates the download creation process for a flow. It is equivalent to the GUI functionality allowing to \u201cDownload Results\u201d from the Flows Overview page. Required Permissions: PREPARE_RESULTS",
+          "name": "Create Flow Download",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f747c6ec-a974-42b6-8534-46f68b4c73de",
+          "steps": [
+            {
+              "uuid": "f747c6ec-a974-42b6-8534-46f68b4c73de",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "e028d266-ce33-4193-aa5b-941cab2b32bc",
+                "title": "Rapid7 Velociraptor: Create Flow Download",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "94c9b58d-8d78-4eed-acdc-00e2b8d7180a",
+              "@type": "WorkflowStep",
+              "name": "Create Flow Download",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "wait": false,
+                  "expand_sparse": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "create_flow_download",
+                "operationTitle": "Create Flow Download"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "2035d3a0-8304-4e78-b0e3-fcd910e7aaab",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Flow Download",
+              "sourceStep": "/api/3/workflow_steps/f747c6ec-a974-42b6-8534-46f68b4c73de",
+              "targetStep": "/api/3/workflow_steps/94c9b58d-8d78-4eed-acdc-00e2b8d7180a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "3018ea3e-de45-47b9-b87c-15fc14e42bab",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Dumps artifact definitions from the internal repository. Required Permissions: READ_RESULTS",
+          "name": "Dump Artifact Definitions",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a70566df-6c5e-4f01-8ddb-aa593b10dd6e",
+          "steps": [
+            {
+              "uuid": "a70566df-6c5e-4f01-8ddb-aa593b10dd6e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "4945404f-1245-4b84-9c51-62e25ab6f5e5",
+                "title": "Rapid7 Velociraptor: Dump Artifact Definitions",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "7e64402e-e967-41b2-b5cb-afb18623554e",
+              "@type": "WorkflowStep",
+              "name": "Dump Artifact Definitions",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "deps": false,
+                  "sanitize": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "dump_artifact_definitions",
+                "operationTitle": "Dump Artifact Definitions"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "7f61b912-dbc1-438f-afc0-d98236c2e38c",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Dump Artifact Definitions",
+              "sourceStep": "/api/3/workflow_steps/a70566df-6c5e-4f01-8ddb-aa593b10dd6e",
+              "targetStep": "/api/3/workflow_steps/7e64402e-e967-41b2-b5cb-afb18623554e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6eab7e56-8594-4adb-9993-45a9a133921d",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Creates and launches a hunt to collect the specified artifacts. Required Permissions: ORG_ADMIN, START_HUNT",
+          "name": "Create Hunt",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/55ade89e-2c38-464c-9d7b-3b7828496c5a",
+          "steps": [
+            {
+              "uuid": "55ade89e-2c38-464c-9d7b-3b7828496c5a",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "8a360372-8c62-4b07-bd6c-11d94519c8ea",
+                "title": "Rapid7 Velociraptor: Create Hunt",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "d3e94478-ddb7-4d19-a5a7-c647a2e1e16a",
+              "@type": "WorkflowStep",
+              "name": "Create Hunt",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "pause": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "create_hunt",
+                "operationTitle": "Create Hunt"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b260bfca-0f32-4e01-89e4-4be38d5050b2",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Hunt",
+              "sourceStep": "/api/3/workflow_steps/55ade89e-2c38-464c-9d7b-3b7828496c5a",
+              "targetStep": "/api/3/workflow_steps/d3e94478-ddb7-4d19-a5a7-c647a2e1e16a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "be7cf971-d95a-4d82-a5ee-578f2b53db16",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Retrieves a list of hunts from Rapid7 Velociraptor based on the input parameters you have specified. Required Permissions: READ_RESULTS",
+          "name": "Get Hunts List",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/ad13a6d5-36a3-496c-a194-619953893490",
+          "steps": [
+            {
+              "uuid": "ad13a6d5-36a3-496c-a194-619953893490",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "b606bb62-5570-44af-88c9-59b85bccf04c",
+                "title": "Rapid7 Velociraptor: Get Hunts List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "4f7b101c-15b3-4d9b-aea0-15b045545f33",
+              "@type": "WorkflowStep",
+              "name": "Get Hunts List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "list_hunts",
+                "operationTitle": "Get Hunts List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "cfa018d5-30a4-4983-ae66-0fd23bb4ab47",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Hunts List",
+              "sourceStep": "/api/3/workflow_steps/ad13a6d5-36a3-496c-a194-619953893490",
+              "targetStep": "/api/3/workflow_steps/4f7b101c-15b3-4d9b-aea0-15b045545f33"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "4513fc1c-a241-481d-aaa4-60507fb1e8e1",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Retrieves the results of a hunt from Rapid7 Velociraptor based on the Hunt ID and other input parameters you have specified. Required Permissions: READ_RESULTS",
+          "name": "Get Hunt Results",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3a245ceb-f217-4ecf-8bd4-09a4efc0ea63",
+          "steps": [
+            {
+              "uuid": "3a245ceb-f217-4ecf-8bd4-09a4efc0ea63",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "b5dbd2d5-1451-415e-95d3-6e9bf9028136",
+                "title": "Rapid7 Velociraptor: Get Hunt Results",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "bd19eb07-0b91-4a96-a433-371154b80d39",
+              "@type": "WorkflowStep",
+              "name": "Get Hunt Results",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "brief": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "get_hunt_results",
+                "operationTitle": "Get Hunt Results"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "678e4eb5-57e7-4b70-8586-f9932e3351c1",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Hunt Results",
+              "sourceStep": "/api/3/workflow_steps/3a245ceb-f217-4ecf-8bd4-09a4efc0ea63",
+              "targetStep": "/api/3/workflow_steps/bd19eb07-0b91-4a96-a433-371154b80d39"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "8fae9076-d577-4f4b-91eb-e53313e90b9f",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Creates a download pack for a hunt. This function initiates the download creation process for a hunt. It is equivalent to the GUI functionality allowing to \u201cDownload Results\u201d from the Hunts Overview page. Required Permissions: PREPARE_RESULTS",
+          "name": "Create Hunt Download",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f962c20f-c246-47f1-b837-ee0e52c10ac5",
+          "steps": [
+            {
+              "uuid": "f962c20f-c246-47f1-b837-ee0e52c10ac5",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "2f49b9ca-915c-4f65-8bc5-14bc56025afa",
+                "title": "Rapid7 Velociraptor: Create Hunt Download",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "76f95ebe-2220-4010-8baa-baa899e4f76a",
+              "@type": "WorkflowStep",
+              "name": "Create Hunt Download",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": {
+                  "only_combined": false,
+                  "wait": false,
+                  "expand_sparse": false
+                },
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "create_hunt_download",
+                "operationTitle": "Create Hunt Download"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "ef1d980f-570d-4960-b92e-0b7df01de08b",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Hunt Download",
+              "sourceStep": "/api/3/workflow_steps/f962c20f-c246-47f1-b837-ee0e52c10ac5",
+              "targetStep": "/api/3/workflow_steps/76f95ebe-2220-4010-8baa-baa899e4f76a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c97ec4f7-b527-4671-9b81-29f5222eefee",
+          "collection": "/api/3/workflow_collections/6627638e-6686-4e42-84d5-a6344cd64702",
+          "triggerLimit": null,
+          "description": "Runs a user-defined VQL query on Rapid7 Velociraptor. Make sure you have all the permissions required to run the query.",
+          "name": "Run VQL Query",
+          "tag": "#Rapid7 Velociraptor",
+          "recordTags": [
+            "Rapid7",
+            "rapid7-velociraptor"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a1993a31-1cc9-4062-9e6a-044c8b39ad81",
+          "steps": [
+            {
+              "uuid": "a1993a31-1cc9-4062-9e6a-044c8b39ad81",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "7fd35b8c-96f6-4eb1-bfd4-8461b15e4d15",
+                "title": "Rapid7 Velociraptor: Run VQL Query",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "62d27d4b-731c-488b-9fa3-6a6379a75c2e",
+              "@type": "WorkflowStep",
+              "name": "Run VQL Query",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Rapid7 Velociraptor",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "rapid7-velociraptor",
+                "operation": "run_vql_query",
+                "operationTitle": "Run VQL Query"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e7718ecc-acff-4b78-af2a-c06ca1c2a883",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Run VQL Query",
+              "sourceStep": "/api/3/workflow_steps/a1993a31-1cc9-4062-9e6a-044c8b39ad81",
+              "targetStep": "/api/3/workflow_steps/62d27d4b-731c-488b-9fa3-6a6379a75c2e"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
